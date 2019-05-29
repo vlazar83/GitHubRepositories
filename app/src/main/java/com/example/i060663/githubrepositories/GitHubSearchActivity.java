@@ -9,7 +9,9 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -47,6 +49,19 @@ public class GitHubSearchActivity extends AppCompatActivity implements LoaderMan
         repositoryAdapter = new RepositoryAdapter(this, new ArrayList<Repository>());
 
         listView.setAdapter(repositoryAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent repositoryDetailsIntent = new Intent(GitHubSearchActivity.this, RepositoryDetailsActivity.class);
+
+                // Start the new activity
+                startActivity(repositoryDetailsIntent);
+
+            }
+        });
 
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
