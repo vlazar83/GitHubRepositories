@@ -1,6 +1,8 @@
 package com.example.i060663.githubrepositories;
 
-public class Repository {
+import java.io.Serializable;
+
+public class Repository implements Serializable {
 
     private String name;
     private String fullName;

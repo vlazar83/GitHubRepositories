@@ -28,6 +28,8 @@ public class GitHubSearchActivity extends AppCompatActivity implements LoaderMan
             //"https://api.github.com/search/repositories?q={query}&{page,per_page,sort,order}";
             "https://api.github.com/search/repositories?q={query}&per_page=25&page=";
 
+    public static final String INTENT_REPOSITORY_DETAILS = "INTENT_REPOSITORY_DETAILS";
+
     private static final int REPOSITORY_LOADER_ID = 1;
 
     private RepositoryAdapter repositoryAdapter;
@@ -56,6 +58,7 @@ public class GitHubSearchActivity extends AppCompatActivity implements LoaderMan
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent repositoryDetailsIntent = new Intent(GitHubSearchActivity.this, RepositoryDetailsActivity.class);
+                repositoryDetailsIntent.putExtra(INTENT_REPOSITORY_DETAILS,repositoryAdapter.getItem(position));
 
                 // Start the new activity
                 startActivity(repositoryDetailsIntent);
