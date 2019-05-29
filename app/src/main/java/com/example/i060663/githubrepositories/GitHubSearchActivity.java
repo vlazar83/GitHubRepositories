@@ -14,6 +14,7 @@ public class GitHubSearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_git_hub_search);
 
+        /*
         ArrayList<Repository> repositories = new ArrayList<>();
         repositories.add(new Repository("one", "egy"));
         repositories.add(new Repository("two", "ketto"));
@@ -25,6 +26,9 @@ public class GitHubSearchActivity extends AppCompatActivity {
         repositories.add(new Repository("eight", "nyolc"));
         repositories.add(new Repository("nine", "kilenc"));
         repositories.add(new Repository("ten", "tiz"));
+        */
+
+        ArrayList<Repository> repositories = QueryUtils.extractEarthquakes();
 
         RepositoryAdapter adapter = new RepositoryAdapter(this, repositories);
 

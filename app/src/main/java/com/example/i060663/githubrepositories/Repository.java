@@ -4,11 +4,51 @@ public class Repository {
 
     private String name;
     private String fullName;
+    private int size;
+    private int stargazersCount;
+    private int forksCount;
+    private String contributorsURL;
 
-    public Repository(String name, String fullName){
+    public String getContributorsURL() {
+        return contributorsURL;
+    }
+
+    public void setContributorsURL(String contributorsURL) {
+        this.contributorsURL = contributorsURL;
+    }
+
+    public int getForksCount() {
+        return forksCount;
+    }
+
+    public void setForksCount(int forksCount) {
+        this.forksCount = forksCount;
+    }
+
+    public int getStargazersCount() {
+        return stargazersCount;
+    }
+
+    public void setStargazersCount(int stargazersCount) {
+        this.stargazersCount = stargazersCount;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public Repository(String name, String fullName, int size, int stargazersCount, int forksCount, String contributorsURL){
 
         this.name = name;
         this.fullName = fullName;
+        this.size = size;
+        this.stargazersCount = stargazersCount;
+        this.forksCount = forksCount;
+        this.contributorsURL = contributorsURL;
     }
 
     public String getName() {
