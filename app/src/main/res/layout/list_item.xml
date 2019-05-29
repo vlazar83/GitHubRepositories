@@ -9,11 +9,11 @@
         android:id="@+id/repo_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="lutti" />
+        tools:text="repo_name" />
 
     <TextView
         android:id="@+id/repo_full_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="one" />
+        tools:text="repo_full_name" />
 </LinearLayout>
