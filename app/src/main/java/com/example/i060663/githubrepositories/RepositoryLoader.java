@@ -7,15 +7,13 @@ import java.util.List;
 
 public class RepositoryLoader extends AsyncTaskLoader<List<Repository>> {
 
-    /** Tag for log messages */
     private static final String LOG_TAG = RepositoryLoader.class.getName();
 
-    /** Query URL */
-    private String mUrl;
+    private String queryURL;
 
     public RepositoryLoader(Context context, String url) {
         super(context);
-        mUrl = url;
+        queryURL = url;
     }
 
     @Override
@@ -25,12 +23,12 @@ public class RepositoryLoader extends AsyncTaskLoader<List<Repository>> {
 
     @Override
     public List<Repository> loadInBackground() {
-        if (mUrl == null) {
+        if (queryURL == null) {
             return null;
         }
 
         // Perform the network request, parse the response, and extract a list of repositories.
-        List<Repository> repositories = QueryUtils.fetchRepositoryData(mUrl);
+        List<Repository> repositories = QueryUtils.fetchRepositoryData(queryURL);
         return repositories;
     }
 }
