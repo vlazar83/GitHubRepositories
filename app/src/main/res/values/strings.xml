@@ -3,4 +3,7 @@
     <string name="repository_detail_activity">Repository Details</string>
     <string name="no_repositories">No repositories found!</string>
     <string name="no_internet_connection">No Internet connection!</string>
+    <string name="sizeLabel">Size</string>
+    <string name="forkCountLabel">ForkCount</string>
+    <string name="starGazersLabel">StarGazers</string>
 </resources>

@@ -18,8 +18,15 @@ public class RepositoryDetailsActivity extends AppCompatActivity {
 
         Repository repositoryObject = (Repository) intent.getSerializableExtra(GitHubSearchActivity.INTENT_REPOSITORY_DETAILS);
 
-        TextView detailsView = findViewById(R.id.repositoryDetailsTextView);
-        detailsView.setText(repositoryObject.getFullName());
+        TextView sizeTextView = findViewById(R.id.size);
+        sizeTextView.setText(Integer.toString(repositoryObject.getSize()));
+
+        TextView forkTextView = findViewById(R.id.fork_count);
+        forkTextView.setText(Integer.toString(repositoryObject.getForksCount()));
+
+        TextView starGazersTextView = findViewById(R.id.stargazers);
+        starGazersTextView.setText(Integer.toString(repositoryObject.getStargazersCount()));
+
 
 
 
