@@ -35,6 +35,8 @@ public class GitHubSearchActivity extends AppCompatActivity implements LoaderMan
         setContentView(R.layout.activity_git_hub_search);
 
         ListView listView = (ListView) findViewById(R.id.list);
+        mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
+        listView.setEmptyView(mEmptyStateTextView);
 
         mAdapter = new RepositoryAdapter(this, new ArrayList<Repository>());
 
@@ -59,11 +61,11 @@ public class GitHubSearchActivity extends AppCompatActivity implements LoaderMan
         } else {
             // Otherwise, display error
             // First, hide loading indicator so error message will be visible
-            //View loadingIndicator = findViewById(R.id.loading_indicator);
-            //loadingIndicator.setVisibility(View.GONE);
+            View loadingIndicator = findViewById(R.id.loading_indicator);
+            loadingIndicator.setVisibility(View.GONE);
 
             // Update empty state with no connection error message
-            //mEmptyStateTextView.setText(R.string.no_internet_connection);
+            mEmptyStateTextView.setText(R.string.no_internet_connection);
         }
 
     }
@@ -75,21 +77,20 @@ public class GitHubSearchActivity extends AppCompatActivity implements LoaderMan
     }
 
     @Override
-    public void onLoadFinished(Loader<List<Repository>> loader, List<Repository> earthquakes) {
+    public void onLoadFinished(Loader<List<Repository>> loader, List<Repository> repositories) {
         // Hide loading indicator because the data has been loaded
-        //View loadingIndicator = findViewById(R.id.loading_indicator);
-        //loadingIndicator.setVisibility(View.GONE);
+        View loadingIndicator = findViewById(R.id.loading_indicator);
+        loadingIndicator.setVisibility(View.GONE);
 
-        // Set empty state text to display "No earthquakes found."
-        //mEmptyStateTextView.setText(R.string.no_earthquakes);
+        mEmptyStateTextView.setText(R.string.no_repositories);
 
         // Clear the adapter of previous earthquake data
         //mAdapter.clear();
 
         // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
         // data set. This will trigger the ListView to update.
-        if (earthquakes != null && !earthquakes.isEmpty()) {
-            mAdapter.addAll(earthquakes);
+        if (repositories != null && !repositories.isEmpty()) {
+            mAdapter.addAll(repositories);
         }
     }
 
