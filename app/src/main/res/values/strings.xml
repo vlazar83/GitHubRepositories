@@ -7,4 +7,6 @@
     <string name="forkCountLabel">ForkCount</string>
     <string name="starGazersLabel">StarGazers</string>
     <string name="avatarPicture">Avatar Picture</string>
+    <string name="repositoryNameLabel">Repository Name</string>
+    <string name="repositoryFullNameLabel">Repository Full Name</string>
 </resources>

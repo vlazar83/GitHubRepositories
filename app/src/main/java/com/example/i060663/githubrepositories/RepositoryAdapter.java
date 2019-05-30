@@ -39,6 +39,14 @@ public class RepositoryAdapter extends ArrayAdapter<Repository> {
 
         fullNameTextView.setText(currentRepository.getFullName());
 
+        TextView repositoryNameLabel = (TextView) listItemView.findViewById(R.id.repositoryNameLabel);
+
+        repositoryNameLabel.setText("Repository Name");
+
+        TextView repositoryFullNameLabel = (TextView) listItemView.findViewById(R.id.repositoryFullNameLabel);
+
+        repositoryFullNameLabel.setText("Repository Full Name");
+
         return listItemView;
 
 

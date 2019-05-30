@@ -46,6 +46,9 @@ public class RepositoryDetailsActivity extends AppCompatActivity implements Load
         TextView starGazersTextView = findViewById(R.id.stargazers);
         starGazersTextView.setText(Integer.toString(repositoryObject.getStargazersCount()));
 
+        TextView listofRepositoryContributorsLabel = findViewById(R.id.listOfContributorsLabel);
+        listofRepositoryContributorsLabel.setText("List of Contributors in the \"" + repositoryObject.getName() + "\" Repository");
+
         contributorAdapter = new ContributorAdapter(this, new ArrayList<Contributor>());
 
         ListView listView = (ListView) findViewById(R.id.contributors_list);
