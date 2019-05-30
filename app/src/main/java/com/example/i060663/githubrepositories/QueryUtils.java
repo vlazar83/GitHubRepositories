@@ -1,5 +1,7 @@
 package com.example.i060663.githubrepositories;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -70,7 +72,9 @@ public class QueryUtils {
                 String login = currentContributor.getString("login");
                 String avatarURL = currentContributor.getString("avatar_url");
 
-                Contributor contributor = new Contributor(login, avatarURL);
+                Bitmap avatarPicture = getBitmapFromURL(avatarURL);
+
+                Contributor contributor = new Contributor(login, avatarURL, avatarPicture);
 
                 contributors.add(contributor);
             }
@@ -178,6 +182,22 @@ public class QueryUtils {
             }
         }
         return output.toString();
+    }
+
+    public static Bitmap getBitmapFromURL(String src) {
+        try {
+            java.net.URL url = new java.net.URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url
+                    .openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            return myBitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }

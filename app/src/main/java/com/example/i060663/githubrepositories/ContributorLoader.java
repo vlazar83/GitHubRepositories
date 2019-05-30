@@ -29,7 +29,7 @@ public class ContributorLoader extends AsyncTaskLoader<List<Contributor>> {
             return null;
             }
 
-        // Perform the network request, parse the response, and extract a list of repositories.
+        // Perform the network request, parse the response, and extract a list of contributors.
         List<Contributor> contributors = QueryUtils.fetchContributorData(queryUrl);
         return contributors;
     }

@@ -71,11 +71,6 @@ public class RepositoryDetailsActivity extends AppCompatActivity implements Load
             //emptyStateTextView.setText(R.string.no_internet_connection);
         }
 
-
-        ImageView avatarImageView = (ImageView) findViewById(R.id.avatarPicture);
-
-
-
     }
 
     @Override

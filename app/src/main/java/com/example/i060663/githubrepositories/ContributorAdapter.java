@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -35,7 +36,9 @@ public class ContributorAdapter extends ArrayAdapter<Contributor> {
 
         loginNameTextView.setText(currentContributor.getLoginName());
 
-        // image View setup here...
+        ImageView avatarPicture = (ImageView) listItemView.findViewById(R.id.avatarPicture);
+
+        avatarPicture.setImageBitmap(currentContributor.getAvatarPicture());
 
         return listItemView;
 

@@ -6,4 +6,5 @@
     <string name="sizeLabel">Size</string>
     <string name="forkCountLabel">ForkCount</string>
     <string name="starGazersLabel">StarGazers</string>
+    <string name="avatarPicture">Avatar Picture</string>
 </resources>
