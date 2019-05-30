@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -24,9 +25,7 @@ public class GitHubSearchActivity extends AppCompatActivity implements LoaderMan
     private static final String LOG_TAG = GitHubSearchActivity.class.getName();
     private static int currentPage = 1;
 
-    private static String GITHUB_REQUEST_URL =
-            //"https://api.github.com/search/repositories?q={query}&{page,per_page,sort,order}";
-            "https://api.github.com/search/repositories?q={query}&per_page=25&page=";
+    private static String GITHUB_REQUEST_URL = "https://api.github.com/search/repositories?q={query}&per_page=25&page=";
 
     public static final String INTENT_REPOSITORY_DETAILS = "INTENT_REPOSITORY_DETAILS";
 
@@ -84,8 +83,33 @@ public class GitHubSearchActivity extends AppCompatActivity implements LoaderMan
             emptyStateTextView.setText(R.string.no_internet_connection);
         }
 
+        final FloatingActionButton prevButton = (FloatingActionButton) findViewById(R.id.fab_prev);
+        final FloatingActionButton nextButton = (FloatingActionButton) findViewById(R.id.fab_next);
 
-        final Button nextButton = (Button) findViewById(R.id.next);
+        prevButton.setEnabled(false);
+        prevButton.setAlpha(0.5f);
+        nextButton.setAlpha(1.0f);
+        prevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                View loadingIndicator = findViewById(R.id.loading_indicator);
+                loadingIndicator.setVisibility(View.VISIBLE);
+                LoaderManager loaderManager = getLoaderManager();
+                currentPage -= 1;
+                if(currentPage == 1){
+                    prevButton.setEnabled(false);
+                    prevButton.setAlpha(0.5f);
+                    nextButton.setAlpha(1.0f);
+                } else {
+                    prevButton.setEnabled(true);
+                    prevButton.setAlpha(1.0f);
+                }
+                loaderManager.restartLoader(REPOSITORY_LOADER_ID, null, GitHubSearchActivity.this);
+
+            }
+        });
+
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,29 +121,20 @@ public class GitHubSearchActivity extends AppCompatActivity implements LoaderMan
 
                 if(currentPage == maxPage){
                     nextButton.setEnabled(false);
+                    nextButton.setAlpha(0.5f);
                 } else {
                     nextButton.setEnabled(true);
+                    nextButton.setAlpha(1.0f);
                 }
 
-                loaderManager.restartLoader(REPOSITORY_LOADER_ID, null, GitHubSearchActivity.this);
-
-            }
-        });
-
-        final Button prevButton = (Button) findViewById(R.id.prev);
-        prevButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                View loadingIndicator = findViewById(R.id.loading_indicator);
-                loadingIndicator.setVisibility(View.VISIBLE);
-                LoaderManager loaderManager = getLoaderManager();
-                currentPage -= 1;
-                if(currentPage == 1){
-                    prevButton.setEnabled(false);
-                } else {
+                if(currentPage > 1){
                     prevButton.setEnabled(true);
+                    prevButton.setAlpha(1.0f);
+                } else if(currentPage == 1){
+                    prevButton.setEnabled(false);
+                    prevButton.setAlpha(0.5f);
                 }
+
                 loaderManager.restartLoader(REPOSITORY_LOADER_ID, null, GitHubSearchActivity.this);
 
             }
