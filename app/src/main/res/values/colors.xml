@@ -2,8 +2,8 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#d81b60</color>
     <color name="colorSize">#d81b60</color>
-    <color name="colorFork">#ec407a</color>
-    <color name="colorStargazers">#f48fb1</color>
+    <color name="colorFork">#1976d2</color>
+    <color name="colorStargazers">#00796b</color>
 </resources>

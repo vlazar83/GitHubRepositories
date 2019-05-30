@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class RepositoryDetailsActivity extends AppCompatActivity {
 
@@ -27,7 +30,13 @@ public class RepositoryDetailsActivity extends AppCompatActivity {
         TextView starGazersTextView = findViewById(R.id.stargazers);
         starGazersTextView.setText(Integer.toString(repositoryObject.getStargazersCount()));
 
+        ArrayList<Contributor> contributors = QueryUtils.extractContributors(QueryUtils.SAMPLE_JSON_RESPONSE);
 
+        ContributorAdapter adapter = new ContributorAdapter(this, contributors);
+
+        ListView listView = (ListView) findViewById(R.id.contributors_list);
+
+        listView.setAdapter(adapter);
 
 
     }
