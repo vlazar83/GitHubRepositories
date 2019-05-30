@@ -23,10 +23,9 @@ public class RepositoryDetailsActivity extends AppCompatActivity implements Load
 
     private static final int CONTRIBUTORS_LOADER_ID = 2;
 
-    private static final String GITHUB_REQUEST_URL_FOR_CONTRIBUTORS =
-            "https://api.github.com/repos/kpu/kenlm/contributors";
-
     private ContributorAdapter contributorAdapter;
+
+    private Repository repositoryObject;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,7 +35,7 @@ public class RepositoryDetailsActivity extends AppCompatActivity implements Load
 
         Intent intent = getIntent();
 
-        Repository repositoryObject = (Repository) intent.getSerializableExtra(GitHubSearchActivity.INTENT_REPOSITORY_DETAILS);
+        repositoryObject = (Repository) intent.getSerializableExtra(GitHubSearchActivity.INTENT_REPOSITORY_DETAILS);
 
         TextView sizeTextView = findViewById(R.id.size);
         sizeTextView.setText(Integer.toString(repositoryObject.getSize()));
@@ -81,7 +80,7 @@ public class RepositoryDetailsActivity extends AppCompatActivity implements Load
 
     @Override
     public Loader<List<Contributor>> onCreateLoader(int id, Bundle args) {
-        return new ContributorLoader(this, GITHUB_REQUEST_URL_FOR_CONTRIBUTORS);
+        return new ContributorLoader(this, repositoryObject.getContributorsURL());
     }
 
     @Override
