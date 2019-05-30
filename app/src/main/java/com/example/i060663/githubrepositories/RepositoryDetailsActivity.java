@@ -65,8 +65,8 @@ public class RepositoryDetailsActivity extends AppCompatActivity implements Load
             loaderManager.initLoader(CONTRIBUTORS_LOADER_ID, null, this);
         } else {
 
-            //View loadingIndicator = findViewById(R.id.loading_indicator);
-            //loadingIndicator.setVisibility(View.GONE);
+            View loadingIndicator = findViewById(R.id.loading_indicator);
+            loadingIndicator.setVisibility(View.GONE);
 
             //emptyStateTextView.setText(R.string.no_internet_connection);
         }
@@ -85,8 +85,8 @@ public class RepositoryDetailsActivity extends AppCompatActivity implements Load
 
     @Override
     public void onLoadFinished(Loader<List<Contributor>> loader, List<Contributor> contributors) {
-        //View loadingIndicator = findViewById(R.id.loading_indicator);
-        //loadingIndicator.setVisibility(View.GONE);
+        View loadingIndicator = findViewById(R.id.loading_indicator);
+        loadingIndicator.setVisibility(View.GONE);
 
 
 
