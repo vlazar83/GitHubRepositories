@@ -27,6 +27,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".GitHubSearchActivity"/>
         </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/settings_title">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.i060663.githubrepositories.GitHubSearchActivity"/>
+        </activity>
     </application>
 
 </manifest>
