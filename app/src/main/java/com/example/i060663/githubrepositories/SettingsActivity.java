@@ -6,6 +6,8 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.Toast;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -36,8 +38,18 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
             String stringValue = newValue.toString();
-            preference.setSummary(stringValue);
-            return true;
+            int val = Integer.parseInt(newValue.toString());
+
+            if ((val <= 30) && (val >= 5)) {
+                Log.d("Preference ","Value saved: " + val);
+                preference.setSummary(stringValue);
+                return true;
+            }
+            else {
+                Toast.makeText(getActivity(), "Choose something between 5 and 30", Toast.LENGTH_LONG).show();
+                return false;
+            }
+
         }
     }
 }
