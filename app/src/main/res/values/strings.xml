@@ -11,4 +11,7 @@
     <string name="repositoryFullNameLabel">Repository Full Name</string>
     <string name="settings_menu_item">Settings</string>
     <string name="settings_title">GitHubSearch Settings</string>
+    <string name="settings_per_page_label">Result / Page</string>
+    <string name="settings_per_page_key" translatable="false">per_page</string>
+    <string name="settings_per_page_default" translatable="false">15</string>
 </resources>

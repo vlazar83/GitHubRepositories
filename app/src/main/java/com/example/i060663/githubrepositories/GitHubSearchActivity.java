@@ -4,9 +4,12 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -27,7 +30,8 @@ public class GitHubSearchActivity extends AppCompatActivity implements LoaderMan
     private static final String LOG_TAG = GitHubSearchActivity.class.getName();
     private static int currentPage = 1;
 
-    private static String GITHUB_REQUEST_URL = "https://api.github.com/search/repositories?q={query}&per_page=25&page=";
+    // private static String GITHUB_REQUEST_URL = "https://api.github.com/search/repositories?q={query}&per_page=25&page=";
+    private static String GITHUB_REQUEST_URL = "https://api.github.com/search/repositories?q={query}";
 
     public static final String INTENT_REPOSITORY_DETAILS = "INTENT_REPOSITORY_DETAILS";
 
@@ -147,7 +151,18 @@ public class GitHubSearchActivity extends AppCompatActivity implements LoaderMan
     @Override
     public Loader<List<Repository>> onCreateLoader(int i, Bundle bundle) {
 
-        return new RepositoryLoader(this, GITHUB_REQUEST_URL + currentPage);
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String perPage = sharedPrefs.getString(
+                getString(R.string.settings_per_page_key),
+                getString(R.string.settings_per_page_default));
+
+        Uri baseUri = Uri.parse(GITHUB_REQUEST_URL);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        uriBuilder.appendQueryParameter("per_page", perPage);
+        uriBuilder.appendQueryParameter("page", String.valueOf(currentPage));
+
+        return new RepositoryLoader(this, uriBuilder.toString());
     }
 
     @Override
